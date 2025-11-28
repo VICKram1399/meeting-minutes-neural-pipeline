@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: meeting_pipeline_api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Map local data folder to container data folder
+      # This ensures files uploaded/generated persist even if container restarts
+      - ./data:/app/data
+    environment:
+      - LOG_LEVEL=INFO
+      # - HF_TOKEN=your_huggingface_token_here
+    restart: always
